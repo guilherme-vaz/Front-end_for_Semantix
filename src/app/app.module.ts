@@ -9,11 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JobComponent } from './services/Job/job.component';
 import { UserComponent } from './services/User/user.component';
 
+
+import { FilterByNamePipe } from './filters/filterByName.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     JobComponent,
     UserComponent,
+    FilterByNamePipe
   ],
   imports: [
     BrowserModule,

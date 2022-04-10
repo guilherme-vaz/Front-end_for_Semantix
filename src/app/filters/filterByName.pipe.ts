@@ -13,10 +13,10 @@ transform(users: any[], searchText: string): any[] {
     if(!searchText){
       return users
     }
-    searchText = searchText.toLocaleLowerCase();
+    searchText = searchText.toLowerCase();
 
     return users.filter(it => {
-      return it.toLocaleLowerCase().includes(searchText)
+      return it.toLowerCase().includes(searchText)
     })
   }
 }

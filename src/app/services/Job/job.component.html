@@ -22,6 +22,7 @@
               <th scope="col">Nome do trabalho</th>
               <th scope="col">User</th>
               <th scope="col">Status</th>
+              <th scope="col">Recurrence value</th>
               <th scope="col">Recurrence</th>
             </tr>
           </thead>
@@ -30,6 +31,7 @@
               <td>{{job.jobName}}</td>
               <td>{{job.user}}</td>
               <td>{{job.statusCode}}</td>
+              <td>{{job.recurrenceValue | currency }}</td>
               <td>{{job.recurrence}}</td>
               <td>
                 <button type="button" class="btn btn-warning btn-sm" (click)="editJob(job)">Editar</button>
@@ -69,7 +71,7 @@
             </div>
           </div>
 
-         <!--=== RECURRENCE ===-->
+         <!--=== STATUS ===-->
          <p>Selecione o status:</p>
          <div class="form-check">
            <div class="fix-buttons">
@@ -92,6 +94,17 @@
              <div *ngIf="statusCode.errors">Recorrência é obrigatório</div>
            </div>
          </div>
+
+          <!--=== RECURRENCE VALUE ===-->
+          <div class="form-group">
+            <label for="recurrenceValue">Valor</label>
+            <input type="number" [(ngModel)]="job.recurrenceValue" id="recurrenceValue" name="recurrenceValue" #recurrenceValue="ngModel" required
+              class="form-control" [ngClass]="{ 'is-invalid': f.submitted && recurrenceValue.invalid }"
+              placeholder="Digite o valor">
+            <div *ngIf="f.submitted && recurrenceValue.invalid" class="invalid-feedback">
+              <div *ngIf="recurrenceValue.errors">recurrenceValue é obrigatória</div>
+            </div>
+          </div>
 
 
           <!--=== RECURRENCE ===-->

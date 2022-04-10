@@ -10,5 +10,6 @@ export interface Job {
   jobName: string;
   user: User;
   statusCode: statusCode;
+  recurrenceValue: number;
   recurrence: recurrence;
 }

@@ -25,12 +25,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users | filterByName: searchText">
               <td>{{user.fullName}}</td>
               <td>{{user.email}}</td>
               <td>{{user.cellphone}}</td>
               <td>
                 <button type="button" class="btn btn-warning btn-sm" (click)="editUser(user)">Editar</button>
+                <!-- <button type="button" class="btn btn-primary btn-sm" rout (click)="getUserById(user)">View</button> -->
                 <!-- <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteUser(user)">Deletar</button> -->
               </td>
             </tr>

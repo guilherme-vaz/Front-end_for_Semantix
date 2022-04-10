@@ -39,6 +39,12 @@ export class UserComponent implements OnInit {
     });
   }
 
+  getUserById(user: User){
+    this.userService.getUserById(user.id).subscribe(() => {
+      this.user = user;
+    })
+  }
+
   deleteUser(user: User) {
     this.userService.deleteUser(user).subscribe(() => {
       this.getUsers();
