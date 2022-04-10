@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs</title>
+</head>
+
+<body>
+
+  <!-- ===== LIST CONTAINER ==== -->
+  <div class="container">
+    <div class="card list-car">
+      <h5 class="card-header">Lista de trabalhos</h5>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome do trabalho</th>
+              <th scope="col">User</th>
+              <th scope="col">Status</th>
+              <th scope="col">Recurrence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let job of jobs">
+              <td>{{job.jobName}}</td>
+              <td>{{job.user}}</td>
+              <td>{{job.statusCode}}</td>
+              <td>{{job.recurrence}}</td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" (click)="editJob(job)">Editar</button>
+                <!-- <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteJob(job)">Deletar</button> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== ADD JOB CONTAINER ==== -->
+    <div class="card add-car">
+      <h5 class="card-header">Adicionar/Atualizar Trabalho</h5>
+      <div class="card-body">
+        <form id="add-form" (ngSubmit)="f.form.valid && saveJob(f)" #f="ngForm" novalidate>
+
+          <!--=== NOME ===-->
+          <div class="form-group">
+            <label for="jobName">Nome</label>
+            <input type="text" [(ngModel)]="job.jobName" id="jobName" name="jobName" #jobName="ngModel" required
+              class="form-control" [ngClass]="{ 'is-invalid': f.submitted && jobName.invalid }"
+              placeholder="Digite o nome completo">
+            <div *ngIf="f.submitted && jobName.invalid" class="invalid-feedback">
+              <div *ngIf="jobName.errors">Nome é obrigatório</div>
+            </div>
+          </div>
+
+          <!--=== JOB USER ===-->
+          <div class="form-group">
+            <label for="user">User responsável</label>
+            <input type="text" [(ngModel)]="job.user" id="user" name="user" #user="ngModel" required
+              class="form-control" [ngClass]="{ 'is-invalid': f.submitted && user.invalid }"
+              placeholder="Digite o user">
+            <div *ngIf="f.submitted && user.invalid" class="invalid-feedback">
+              <div *ngIf="user.errors">user é obrigatória</div>
+            </div>
+          </div>
+
+         <!--=== RECURRENCE ===-->
+         <p>Selecione o status:</p>
+         <div class="form-check">
+           <div class="fix-buttons">
+             <!-- Ativo -->
+             <label class="form-check-label" for="ativo">Ativo</label>
+             <input type="radio" [(ngModel)]="job.statusCode" id="ativo" value="Ativo" name="statusCode" #statusCode="ngModel"
+               required class="form-check-input" [ngClass]="{ 'is-invalid': f.submitted && statusCode.invalid }">
+           </div>
+
+           <div class="fix-buttons">
+             <!-- Inativo -->
+             <label class="form-check-label" for="inativo">Inativo</label>
+
+             <input type="radio" [(ngModel)]="job.statusCode" id="inativo" value="Inativo" name="statusCode" #statusCode="ngModel"
+               required class="form-check-input" [ngClass]="{ 'is-invalid': f.submitted && statusCode.invalid }">
+
+           </div>
+
+           <div *ngIf="f.submitted && statusCode.invalid" class="invalid-feedback">
+             <div *ngIf="statusCode.errors">Recorrência é obrigatório</div>
+           </div>
+         </div>
+
+
+          <!--=== RECURRENCE ===-->
+          <p>Selecione a recorrência:</p>
+          <div class="form-check">
+            <div class="fix-buttons">
+              <!-- Ativo -->
+              <label class="form-check-label" for="intervalo">Intervalo</label>
+              <input type="radio" [(ngModel)]="job.recurrence" id="intervalo" value="Intervalo" name="recurrence" #recurrence="ngModel"
+                required class="form-check-input" [ngClass]="{ 'is-invalid': f.submitted && recurrence.invalid }">
+            </div>
+
+            <div class="fix-buttons">
+              <!-- Inativo -->
+              <label class="form-check-label" for="horário fixo">Horário fixo</label>
+              <input type="radio" [(ngModel)]="job.recurrence" id="horário fixo" value="Horário Fixo" name="recurrence" #recurrence="ngModel"
+                required class="form-check-input" [ngClass]="{ 'is-invalid': f.submitted && recurrence.invalid }">
+            </div>
+
+            <div *ngIf="job.recurrence == 'Intervalo'">
+              <p></p>
+              <label for="user">Digite a recorrência</label>
+              <input type="text" [(ngModel)]="job.recurrence" id="recurrence" name="recurrence" #recurrence="ngModel" required
+                class="form-control" [ngClass]="{ 'is-invalid': f.submitted && recurrence.invalid }"
+                placeholder="Digite a recorrência">
+            </div>
+            
+
+            <div *ngIf="f.submitted && recurrence.invalid" class="invalid-feedback">
+              <div *ngIf="recurrence.errors">Recorrência é obrigatório</div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-add-car">Salvar</button>
+          <button type="reset" class="btn btn-secondary btn-add-car" (click)="cleanForm(f)">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
