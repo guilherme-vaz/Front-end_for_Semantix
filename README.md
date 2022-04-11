@@ -1,3 +1,44 @@
+# Backend - Teste Fullstack Jr
+
+### Construir uma aplicação completa escalável. 
+
+### Features
+
+- [x] Criação de usuário
+- [x] Edição de usuário
+- [x] Remoção de usuário
+- [x] Filtro de usuários por nome
+- [ ] Filtro de usuários por data de criação 
+- [x] Criação de trabalhos
+- [x] Edição de trabalho
+- [x] Remoção de trabalho
+- [x] Filtro de trabalhos por nome
+- [ ] Filtro de trabalhos por data de criação 
+- [x] Paginação
+
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Serverless Framework](https://www.serverless.com/)
+- [AWS Lambda](https://aws.amazon.com/pt/lambda/)
+- [Amazon DynamoDB](https://aws.amazon.com/pt/dynamodb/)
+- [UUID](https://www.npmjs.com/package/uuid)
+- [BCryptJs](https://www.npmjs.com/package/bcryptjs)
+
+-[ng2-search-filter]
+-[ngx-pagination]
+
+
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
 # LinkapiChallenge
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.

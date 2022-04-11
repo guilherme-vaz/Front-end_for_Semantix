@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from './user.service';
 import { User } from 'src/app/models/user';
 import { NgForm } from '@angular/forms';
@@ -13,7 +13,8 @@ export class UserComponent implements OnInit {
   user = {} as User;
   users: User[];
   editing = false
-  searchText = ''
+  searchText: User["fullName"]
+  paginaAtual = 1; 
 
   constructor(private userService: UserService) {}
 
@@ -55,8 +56,7 @@ export class UserComponent implements OnInit {
     this.editing = true;
     this.user = { ...user };
   }
-
-  // limpa o formulário
+  
   cleanForm(form: NgForm) {
     this.editing = false;
     this.getUsers();

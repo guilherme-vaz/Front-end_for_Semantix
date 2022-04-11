@@ -8,7 +8,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap, retry } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 
-// Headers
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -22,14 +22,13 @@ const urlApi =
 export class UserService {
   constructor(private httpClient: HttpClient) {}
 
-  // Get all users
+
   getUsers(): Observable<User[]> {
     return this.httpClient
       .get<User[]>(urlApi)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  //User by Id (Still need to implement)
   getUserById(id: string): Observable<User> {
     const url = `${urlApi}/${id}`;
     return this.httpClient.get<User>(url).pipe(
@@ -38,7 +37,6 @@ export class UserService {
     );
   }
 
-  //Save a user
   saveUser(user: User): Observable<User> {
     return this.httpClient
       .post<User>(urlApi, JSON.stringify(user), httpOptions)
@@ -67,14 +65,12 @@ export class UserService {
     );
   }
 
-  // Manipulação de erros
+ 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // Erro ocorreu no lado do client
       errorMessage = error.error.message;
     } else {
-      // Erro ocorreu no lado do servidor
       errorMessage =
         `Código do erro: ${error.status}, ` + `mensagem: ${error.message}`;
     }

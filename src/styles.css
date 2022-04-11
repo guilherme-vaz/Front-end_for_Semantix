@@ -2,3 +2,31 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pag-control-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.pag-control {
+   padding: 0.3rem;
+}
+
+.current {
+    background-color: rgb(158, 203, 251) !important;
+    border-radius: 4rem !important;
+}
+
+@media only screen and (max-width: 770px) {
+    .my-table tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #fadeshow1 {
+        display: none;
+    }
+
+   
+}

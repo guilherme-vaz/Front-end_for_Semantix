@@ -6,6 +6,12 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { Ng2SearchPipe } from 'ng2-search-filter';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 
 @NgModule({
   declarations: [],
@@ -15,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    Ng2SearchPipe,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: []

@@ -16,27 +16,37 @@
     <div class="card list-car">
       <h5 class="card-header">Lista de Users</h5>
       <div class="card-body">
-        <table class="table">
+        <table class="table my-table">
           <thead>
             <tr>
-              <th scope="col">Nome do usuário</th>
-              <th scope="col">Email</th>
-              <th scope="col">Telefone</th>
+              <th scope="col">Usuário</th>
+              <th id="fadeshow1" scope="col">Email</th>
+              <th id="fadeshow1" scope="col">Telefone</th>
+              <th id="fadeshow1" scope="col">Adicionado em:</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users | filterByName: searchText">
+            <p></p>
+            <div class="form-group">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Search for a user by name">
+            </div>
+            <tr *ngFor="let user of users | filter: searchText | paginate: {itemsPerPage: 3, currentPage: paginaAtual }; let i = index">
               <td>{{user.fullName}}</td>
               <td>{{user.email}}</td>
               <td>{{user.cellphone}}</td>
+              <td>{{user.createdAt | date: 'dd/MM/yyyy'}}</td>
               <td>
-                <button type="button" class="btn btn-warning btn-sm" (click)="editUser(user)">Editar</button>
+                <button type="button" class="btn btn-warning btn-sm my-button" (click)="editUser(user)">Editar</button>
                 <!-- <button type="button" class="btn btn-primary btn-sm" rout (click)="getUserById(user)">View</button> -->
                 <!-- <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteUser(user)">Deletar</button> -->
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="pag-control-container">
+          <pagination-controls class="pag-control" (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        </div>
       </div>
     </div>
 
@@ -52,20 +62,14 @@
             <input type="text" [(ngModel)]="user.fullName" id="fullName" name="fullName" #fullName="ngModel" required
               class="form-control" [ngClass]="{ 'is-invalid': f.submitted && fullName.invalid }"
               placeholder="Digite o nome completo">
-            <div *ngIf="f.submitted && fullName.invalid" class="invalid-feedback">
-              <div *ngIf="fullName.errors">Nome é obrigatório</div>
-            </div>
           </div>
 
           <!--=== EMAIL ===-->
           <div [hidden]="editing" class="form-group">
             <label for="email">Email</label>
-            <input [disabled]="editing" type="email" [(ngModel)]="user.email" id="email" name="email" #email="ngModel" required
-              class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+            <input [disabled]="editing" type="email" [(ngModel)]="user.email" id="email" name="email" #email="ngModel"
+              required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
               placeholder="Digite o user">
-            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-              <div *ngIf="email.errors">email é obrigatória</div>
-            </div>
           </div>
 
           <!--=== CELLPHONE ===-->
@@ -74,20 +78,14 @@
             <input type="tel" [(ngModel)]="user.cellphone" id="cellphone" name="cellphone" #cellphone="ngModel" required
               class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cellphone.invalid }"
               placeholder="Digite o status">
-            <div *ngIf="f.submitted && cellphone.invalid" class="invalid-feedback">
-              <div *ngIf="cellphone.errors">Telefone é obrigatório</div>
-            </div>
           </div>
 
           <!--=== PASSWORD ===-->
           <div [hidden]="editing" class="form-group">
             <label for="password">Password</label>
-            <input [disabled]="editing" type="password" [(ngModel)]="user.password" id="password" name="password" #password="ngModel"
-              required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"
-              placeholder="Digite a senha">
-            <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
-              <div *ngIf="password.errors">Password é obrigatório</div>
-            </div>
+            <input [disabled]="editing" type="password" [(ngModel)]="user.password" id="password" name="password"
+              #password="ngModel" required class="form-control"
+              [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" placeholder="Digite a senha">
           </div>
 
           <button type="submit" class="btn btn-primary btn-add-car">Salvar</button>

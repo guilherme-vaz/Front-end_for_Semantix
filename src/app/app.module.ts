@@ -10,15 +10,14 @@ import { JobComponent } from './services/Job/job.component';
 import { UserComponent } from './services/User/user.component';
 
 
-import { FilterByNamePipe } from './filters/filterByName.pipe';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     JobComponent,
     UserComponent,
-    FilterByNamePipe
   ],
   imports: [
     BrowserModule,
@@ -27,6 +26,8 @@ import { FilterByNamePipe } from './filters/filterByName.pipe';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,7 +12,9 @@ export class JobComponent implements OnInit {
   job = {} as Job;
   jobs: Job[];
   editing = false;
-  // recurrence = ''
+  searchText: Job['jobName']
+  paginaAtual = 1;
+ 
 
   constructor(private jobService: JobService) {}
 
@@ -49,7 +51,7 @@ export class JobComponent implements OnInit {
     this.job = { ...job };
   }
 
-  // limpa o formulário
+  
   cleanForm(form: NgForm) {
     this.editing = false;
     this.getJobs();
