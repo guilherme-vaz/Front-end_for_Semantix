@@ -1,4 +1,4 @@
-# Backend - Teste Fullstack Jr
+# Frontend - Teste Fullstack Jr
 
 ### Construir uma aplicação completa escalável. 
 
