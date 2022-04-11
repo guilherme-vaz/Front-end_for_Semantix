@@ -27,9 +27,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Amazon DynamoDB](https://aws.amazon.com/pt/dynamodb/)
 - [UUID](https://www.npmjs.com/package/uuid)
 - [BCryptJs](https://www.npmjs.com/package/bcryptjs)
-
--[ng2-search-filter]
--[ngx-pagination]
+- [ng2-search-filter]
+- [ngx-pagination]
 
 
 
